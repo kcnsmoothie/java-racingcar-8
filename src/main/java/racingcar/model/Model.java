@@ -7,17 +7,19 @@ import java.util.List;
 
 public class Model {
     String carNames;
+    int tryCounts;
     LinkedHashSet<String> carName = new LinkedHashSet<>();
     List<Car> carList = new ArrayList<>();
     Car car;
 
-    public Model(String inputCarNames, int tryCounts) {
+    public Model(String inputCarNames, int inputTryCounts) {
         carNames = inputCarNames;
         carNameParser();
         createCar();
+        tryCounts = inputTryCounts;
     }
 
-    //입력받은 값을 분리
+    // 입력받은 값을 분리
     public void carNameParser() {
         Arrays.stream(carNames.split(","))
                 .map(String::trim)
@@ -29,6 +31,13 @@ public class Model {
     public void createCar() {
         for (String name : carName) {
             carList.add(new Car(name));
+        }
+    }
+
+    // 레이싱 게임 1 경기
+    public void moveCars() {
+        for (int i = 0; i < carList.size(); i++) {
+
         }
     }
 }

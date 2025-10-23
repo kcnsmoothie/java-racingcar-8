@@ -8,6 +8,7 @@ public class InputView {
         return Console.readLine();
     }
 
+    //Console.readLine은 문자열 타입으로만 입력받을 수 있으므로, String
     public String inputTryCounts() {
         System.out.println();
         return Console.readLine();
