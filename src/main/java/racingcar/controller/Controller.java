@@ -7,7 +7,8 @@ public class Controller {
     InputView inputView = new InputView();
     Model model;
 
-    public Controller() {
-        model = new Model(inputView.inputCarNames(),inputView.inputTryCounts());
+    public Controller(){
+        String carNames = inputView.inputCarNames();
+        model = new Model(carNames);
     }
 }
