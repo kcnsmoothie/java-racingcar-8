@@ -17,9 +17,9 @@ public class Controller {
         model = new Model(inputCarNames, inputTryCounts);
 
         //view로 매 라운드 마다 결과를 출력
-        outputView.printWinners(model.findWinnersName());
+
 
         //view로 우승자를 출력
-
+        outputView.printWinners(model.findWinnersName());
     }
 }

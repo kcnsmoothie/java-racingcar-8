@@ -51,6 +51,8 @@ public class Model {
             if (MOVE_THRESHOLD <= randomNumber) {
                 car.move();
             }
+            //매 회차마다 결과를 출력
+            car.roundRaceResult();
         }
     }
 
@@ -77,7 +79,5 @@ public class Model {
 
         return winners;
     }
-
-
 
 }
