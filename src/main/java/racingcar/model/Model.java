@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import camp.nextstep.edu.missionutils.Randoms;
+import java.util.stream.Collectors;
 
 public class Model {
     String carNames;
@@ -17,6 +19,8 @@ public class Model {
         carNameParser();
         createCar();
         tryCounts = inputTryCounts;
+        runGame();
+        findWinnersName();
     }
 
     // 입력받은 값을 분리
@@ -34,10 +38,49 @@ public class Model {
         }
     }
 
-    // 레이싱 게임 1 경기
-    public void moveCars() {
-        for (int i = 0; i < carList.size(); i++) {
+    private static final int MIN_NUMBER = 0;
+    private static final int MAX_NUMBER = 9;
+    private static final int MOVE_THRESHOLD = 4;
 
+    // 자동차를 움직이는 메서드
+    public void moveCars() {
+        for (Car car : carList) {
+            // 랜덤 인수를 반환
+            int randomNumber = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+            // 4보다 클 때 이동
+            if (MOVE_THRESHOLD <= randomNumber) {
+                car.move();
+            }
         }
     }
+
+    //입력 횟수만큼 게임을 진행하는 메서드
+    public void runGame() {
+        for (int i = 0; i <= tryCounts; i++) {
+            moveCars();
+        }
+    }
+
+    //우승자를 찾는 메서드
+    public void findWinnersName() {
+        //위치의 최댓값을 구하기
+        int maxPosition = carList.stream()
+                .map(Car::getPositions)
+                .max(Integer::compareTo) //Optional
+                .orElse(0);
+
+        //최댓값을 가진 사람의 이름 찾기
+        List<String> winners = carList.stream()
+                .filter(car -> car.getPositions() == maxPosition)
+                .map(Car::getName)
+                .collect(Collectors.toList());
+
+        System.out.println(String.join(", ", winners) + " 가 최종 우승했습니다.");
+    }
+
+    //view로 매 라운드 마다 결과를 출력하는 메서드
+
+
+    //view로 우승자를 출력하는 메서드
+
 }
