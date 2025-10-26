@@ -62,7 +62,7 @@ public class Model {
     }
 
     //우승자를 찾는 메서드
-    public void findWinnersName() {
+    public List<String> findWinnersName() {
         //위치의 최댓값을 구하기
         int maxPosition = carList.stream()
                 .map(Car::getPositions)
@@ -75,12 +75,9 @@ public class Model {
                 .map(Car::getName)
                 .collect(Collectors.toList());
 
-        System.out.println(String.join(", ", winners) + " 가 최종 우승했습니다.");
+        return winners;
     }
 
-    //view로 매 라운드 마다 결과를 출력하는 메서드
 
-
-    //view로 우승자를 출력하는 메서드
 
 }
