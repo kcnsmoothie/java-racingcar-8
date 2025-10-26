@@ -30,7 +30,7 @@ public class RacingGameService {
 
     // 입력 횟수만큼 게임을 진행하는 메서드
     public void runGame() {
-        for (int i = 0; i <= tryCounts; i++) {
+        for (int i = 0; i < tryCounts; i++) {
             moveCars();
             printRaceResult();
         }
@@ -43,7 +43,6 @@ public class RacingGameService {
             if (MOVE_THRESHOLD <= randomNumber) {
                 car.move();
             }
-            printRaceResult();
         }
     }
 
