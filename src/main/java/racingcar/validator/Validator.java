@@ -1,5 +1,6 @@
 package racingcar.validator;
 
-public interface Validator {
-    
+@FunctionalInterface
+public interface Validator<T> {
+    void validate(T value);
 }
