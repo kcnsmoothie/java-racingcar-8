@@ -1,25 +1,46 @@
 package racingcar.controller;
 
+import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
-import racingcar.model.Model;
+import racingcar.model.RacingGameService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Controller {
-    InputView inputView = new InputView();
-    OutputView outputView = new OutputView();
-    Model model;
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final RacingGameService racingGameService;
 
-    public Controller() {
-        String inputCarNames = inputView.inputCarNames();
-        // 추후 입력값이 정수, 유효한 값인지 검증로직 추가
-        int inputTryCounts = Integer.parseInt(inputView.inputTryCounts());
-        model = new Model(inputCarNames, inputTryCounts);
-
-        //view로 매 라운드 마다 결과를 출력
-
-
-        //view로 우승자를 출력
-        outputView.printWinners(model.findWinnersName());
+    public Controller(InputView inputView, OutputView outputView, RacingGameService racingGameService) {
+        this.inputView = inputView;
+        this.outputView = outputView;
+        this.racingGameService = racingGameService;
     }
+
+    public void run() {
+        LinkedHashSet<String> carNames = getCarNames(inputView.inputCarNames());
+        int tryCounts = Integer.parseInt(inputView.inputTryCounts()); // 시도 횟수 입력 받기
+
+        racingGameService.createCar(carNames);
+        racingGameService.setTryCounts(tryCounts);
+        racingGameService.runGame();
+
+        int maxPosition = racingGameService.getLongestPosition();
+        List<String> winners = racingGameService.findWinnersName(maxPosition);
+
+        outputView.printResultMessage();
+        outputView.printWinners(winners);
+    }
+
+    // carNames를 분리해서 List로 반환하는 메서드
+    public LinkedHashSet<String> getCarNames(String inputCarNames) {
+        LinkedHashSet<String> carName = new LinkedHashSet<>();
+        Arrays.stream(inputCarNames.split(","))
+                .map(String::trim)
+                .forEach(carName::add);
+
+        return carName;
+    }
+
 }
