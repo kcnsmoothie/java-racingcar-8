@@ -1,10 +1,11 @@
-package racingcar.model;
+package racingcar.domain;
 
 public class Car {
     private String name;
+    public int positions;
+
     private static final int DEFAULT_POSITION = 0;
     private static final String  MOVE_SYMBOL = "-";
-    public int positions;
 
     public Car(String name) {
         this.name = name;
