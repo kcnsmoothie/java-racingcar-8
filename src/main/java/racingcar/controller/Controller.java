@@ -29,12 +29,19 @@ public class Controller {
         racingGameService.createCars(cars);
         racingGameService.setTryCounts(tryCounts);
 
-        racingGameService.runGame();
+        outputView.printResultMessage();
+
+        for (int i = 0; i < tryCounts; i++) {
+            racingGameService.moveCars();
+            List<String> roundResult = racingGameService.roundRaceResult();
+
+            outputView.printRaceResult(roundResult);
+        }
 
         int maxPosition = racingGameService.getLongestPosition();
         List<String> winners = racingGameService.findWinnersName(maxPosition);
 
-        outputView.printResultMessage();
+
 
         outputView.printWinners(winners);
     }

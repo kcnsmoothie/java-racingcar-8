@@ -16,15 +16,15 @@ public class Car {
         positions++;
     }
 
-    public void roundRaceResult() {
-        System.out.println(name + " : " + MOVE_SYMBOL.repeat(positions));
-    }
-
     public String getName() {
         return name;
     }
 
     public int getPositions() {
         return positions;
+    }
+
+    public String getRoundResult() {
+        return name + " : " + MOVE_SYMBOL.repeat(positions);
     }
 }

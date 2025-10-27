@@ -30,7 +30,6 @@ public class RacingGameService {
         }
     }
 
-
     // 입력 횟수만큼 게임을 진행하는 메서드
     public void runGame() {
         for (int i = 0; i < tryCounts; i++) {
@@ -49,11 +48,12 @@ public class RacingGameService {
         }
     }
 
-    public void roundRaceResult() {
+    public List<String> roundRaceResult() {
+        List<String> roundResult = new ArrayList<>();
         for (Car car : carList) {
-            car.roundRaceResult();
+            roundResult.add(car.getRoundResult());
         }
-        System.out.println();
+        return roundResult;
     }
 
     public int getLongestPosition() {

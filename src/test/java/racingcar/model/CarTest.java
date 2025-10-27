@@ -7,6 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class CarTest {
 
@@ -14,7 +15,7 @@ public class CarTest {
     @DisplayName("입력값이 null 혹은 공백인지 검사")
     @NullAndEmptySource
     void nameNullOrEmpty(String carNames) {
-        assertThatThrownBy(() -> new Car(carNames))
+        assertThatThrownBy(() -> new Cars(carNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -22,7 +23,7 @@ public class CarTest {
     @DisplayName("자동차 이름이 5자 초과인지 검사하는 테스트")
     @ValueSource(strings = "pobi,errorname")
     void nameLengthTest(String carNames) {
-        assertThatThrownBy(() -> new Car(carNames))
+        assertThatThrownBy(() -> new Cars(carNames))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
