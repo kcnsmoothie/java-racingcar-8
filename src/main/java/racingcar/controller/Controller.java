@@ -3,7 +3,10 @@ package racingcar.controller;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
+import racingcar.domain.Cars;
 import racingcar.model.RacingGameService;
+import racingcar.validator.CarNameValidator;
+import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,28 +22,20 @@ public class Controller {
     }
 
     public void run() {
-        LinkedHashSet<String> carNames = getCarNames(inputView.inputCarNames());
+        String inputCarNames = inputView.inputCarNames();
         int tryCounts = Integer.parseInt(inputView.inputTryCounts()); // 시도 횟수 입력 받기
 
-        racingGameService.createCar(carNames);
+        Cars cars = new Cars(inputCarNames);
+        racingGameService.createCars(cars);
         racingGameService.setTryCounts(tryCounts);
+
         racingGameService.runGame();
 
         int maxPosition = racingGameService.getLongestPosition();
         List<String> winners = racingGameService.findWinnersName(maxPosition);
 
         outputView.printResultMessage();
+
         outputView.printWinners(winners);
     }
-
-    // carNames를 분리해서 List로 반환하는 메서드
-    public LinkedHashSet<String> getCarNames(String inputCarNames) {
-        LinkedHashSet<String> carName = new LinkedHashSet<>();
-        Arrays.stream(inputCarNames.split(","))
-                .map(String::trim)
-                .forEach(carName::add);
-
-        return carName;
-    }
-
 }
