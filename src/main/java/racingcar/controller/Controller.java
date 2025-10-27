@@ -1,12 +1,8 @@
 package racingcar.controller;
 
-import java.util.Arrays;
-import java.util.LinkedHashSet;
 import java.util.List;
 import racingcar.domain.Cars;
 import racingcar.model.RacingGameService;
-import racingcar.validator.CarNameValidator;
-import racingcar.validator.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -40,8 +36,6 @@ public class Controller {
 
         int maxPosition = racingGameService.getLongestPosition();
         List<String> winners = racingGameService.findWinnersName(maxPosition);
-
-
 
         outputView.printWinners(winners);
     }

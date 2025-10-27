@@ -5,7 +5,7 @@ public class Car {
     private int positions;
 
     private static final int DEFAULT_POSITION = 0;
-    private static final String  MOVE_SYMBOL = "-";
+    private static final String MOVE_SYMBOL = "-";
 
     public Car(String name) {
         this.name = name;

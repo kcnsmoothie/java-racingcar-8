@@ -18,8 +18,15 @@ public class RacingGameService {
     private static final int MAX_NUMBER = 9;
     private static final int MOVE_THRESHOLD = 4;
 
+    public void isValidTryCounts() {
+        if (tryCounts <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 0보다 커야 합니다.");
+        }
+    }
+
     public void setTryCounts(int tryCounts) {
         this.tryCounts = tryCounts;
+        isValidTryCounts();
     }
 
     // Car 객체를 생성하는 역할
@@ -27,14 +34,6 @@ public class RacingGameService {
         List<String> validatedNames = cars.getValidatedCarNames();
         for (String name : validatedNames) {
             carList.add(new Car(name));
-        }
-    }
-
-    // 입력 횟수만큼 게임을 진행하는 메서드
-    public void runGame() {
-        for (int i = 0; i < tryCounts; i++) {
-            moveCars();
-            roundRaceResult();
         }
     }
 
