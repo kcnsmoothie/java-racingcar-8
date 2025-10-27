@@ -6,6 +6,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 import racingcar.domain.Car;
+import racingcar.domain.Cars;
 
 public class RacingGameService {
 
@@ -22,17 +23,19 @@ public class RacingGameService {
     }
 
     // Car 객체를 생성하는 역할
-    public void createCar(LinkedHashSet<String> carName) {
-        for (String name : carName) {
+    public void createCars(Cars cars) {
+        List<String> validatedNames = cars.getValidatedCarNames();
+        for (String name : validatedNames) {
             carList.add(new Car(name));
         }
     }
+
 
     // 입력 횟수만큼 게임을 진행하는 메서드
     public void runGame() {
         for (int i = 0; i < tryCounts; i++) {
             moveCars();
-            printRaceResult();
+            roundRaceResult();
         }
     }
 
@@ -46,7 +49,7 @@ public class RacingGameService {
         }
     }
 
-    public void printRaceResult() {
+    public void roundRaceResult() {
         for (Car car : carList) {
             car.roundRaceResult();
         }

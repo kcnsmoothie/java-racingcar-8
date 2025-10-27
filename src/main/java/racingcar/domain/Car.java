@@ -2,7 +2,7 @@ package racingcar.domain;
 
 public class Car {
     private String name;
-    public int positions;
+    private int positions;
 
     private static final int DEFAULT_POSITION = 0;
     private static final String  MOVE_SYMBOL = "-";
@@ -16,7 +16,6 @@ public class Car {
         positions++;
     }
 
-    //positions수만큼 출력
     public void roundRaceResult() {
         System.out.println(name + " : " + MOVE_SYMBOL.repeat(positions));
     }
