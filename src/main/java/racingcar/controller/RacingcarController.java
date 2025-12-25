@@ -25,6 +25,8 @@ public class RacingcarController {
         List<String> carName = getCarName(carNames);
         List<Car> carList = getCar(carName);
         String TryCounts = inputView.inputTryCount();
+        List<Car> cars = getTurnResult(carList);
+        System.out.println(cars.getFirst().getDistance());
     }
 
     private List<String> getCarName(String carNames) {
@@ -42,5 +44,13 @@ public class RacingcarController {
             carList.add(newCar);
         }
         return carList;
+    }
+
+    private List<Car> getTurnResult(List<Car> carList) {
+        List<Car> cars = carList;
+        for (Car car : cars) {
+            racingcarService.playTurn(car);
+        }
+        return cars;
     }
 }

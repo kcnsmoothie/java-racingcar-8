@@ -1,5 +1,7 @@
 package racingcar.model;
 
+import static racingcar.constant.ReusableInt.MOVE_CAR_DISTANCE;
+
 public class Car {
     private String name;
     private int distance = 0;
@@ -19,5 +21,9 @@ public class Car {
 
     public int getDistance() {
         return distance;
+    }
+
+    public void setDistance() {
+        this.distance += MOVE_CAR_DISTANCE.getIntValue();
     }
 }
