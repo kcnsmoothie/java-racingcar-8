@@ -1,12 +1,16 @@
 package racingcar.model;
 
 public class Car {
-    private final String name;
-    private final int distance;
+    private String name;
+    private int distance = 0;
 
-    public Car(String name, int distance) {
+    private Car(String name, int distance) {
         this.name = name;
         this.distance = distance;
+    }
+
+    public static Car distanceZeroFrom(String carName) {
+        return new Car(carName, 0);
     }
 
     public String getName() {
