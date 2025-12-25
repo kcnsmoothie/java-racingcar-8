@@ -3,6 +3,7 @@ package racingcar.controller;
 import java.util.List;
 import racingcar.service.RacingcarService;
 import racingcar.util.Parser;
+import racingcar.util.Validator;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -19,7 +20,15 @@ public class RacingcarController {
 
     public void run() {
         String carNames = inputView.inputCarName();
-        List<String> carName = Parser.parseByDelimeter(carNames);
+        List<String> carName = getCarName(carNames);
         String TryCounts = inputView.inputTryCount();
+    }
+
+    private List<String> getCarName(String carNames) {
+        List<String> carName = Parser.parseByDelimeter(carNames);
+        for(String name : carName){
+            Validator.validateCarNameLength(name);
+        }
+        return carName;
     }
 }
