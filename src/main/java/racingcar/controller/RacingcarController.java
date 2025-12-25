@@ -1,6 +1,8 @@
 package racingcar.controller;
 
+import java.util.List;
 import racingcar.service.RacingcarService;
+import racingcar.util.Parser;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
@@ -17,6 +19,7 @@ public class RacingcarController {
 
     public void run() {
         String carNames = inputView.inputCarName();
+        List<String> carName = Parser.parseByDelimeter(carNames);
         String TryCounts = inputView.inputTryCount();
     }
 }
