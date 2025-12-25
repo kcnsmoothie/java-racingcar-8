@@ -1,11 +1,11 @@
 package racingcar.constant;
 
-public enum ReusableConstant {
+public enum ReusableString {
     DELIMETER(",");
 
     private final String stringValue;
 
-    ReusableConstant(String stringValue) {
+    ReusableString(String stringValue) {
         this.stringValue = stringValue;
     }
 

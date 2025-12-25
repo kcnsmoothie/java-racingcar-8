@@ -1,10 +1,9 @@
 package racingcar.util;
 
-import static racingcar.constant.ReusableConstant.DELIMETER;
+import static racingcar.constant.ReusableString.DELIMETER;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class Parser {
