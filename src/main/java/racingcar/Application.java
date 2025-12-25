@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.controller.RacingcarController;
-import racingcar.service.RacingcarService;
+import racingcar.model.RacingcarService;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 

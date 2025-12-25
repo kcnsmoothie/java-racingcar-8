@@ -1,7 +1,9 @@
 package racingcar.controller;
 
+import java.util.ArrayList;
 import java.util.List;
-import racingcar.service.RacingcarService;
+import racingcar.model.Car;
+import racingcar.model.RacingcarService;
 import racingcar.util.Parser;
 import racingcar.util.Validator;
 import racingcar.view.InputView;
@@ -21,6 +23,7 @@ public class RacingcarController {
     public void run() {
         String carNames = inputView.inputCarName();
         List<String> carName = getCarName(carNames);
+        List<Car> carList = getCar(carName);
         String TryCounts = inputView.inputTryCount();
     }
 
@@ -30,5 +33,14 @@ public class RacingcarController {
             Validator.validateCarNameLength(name);
         }
         return carName;
+    }
+
+    private List<Car> getCar(List<String> carName) {
+        List<Car> carList = new ArrayList<>();
+        for (String name : carName) {
+            Car newCar = racingcarService.makeCar(name);
+            carList.add(newCar);
+        }
+        return carList;
     }
 }
